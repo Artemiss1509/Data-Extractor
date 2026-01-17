@@ -15,7 +15,7 @@ export default function Header() {
     <div className="bg-gradient-to-r from-purple-600 to-blue-600 p-4 text-white">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-xl font-bold">🐶 Monday.com CRM Extractor</h1>
+          <h1 className="text-xl font-bold">Monday.com CRM Extractor</h1>
           <p className="text-sm opacity-90">Extract and manage your CRM data</p>
         </div>
         <button
