@@ -82,10 +82,10 @@ export async function extractLeads() {
 
     const leads = extractFromTableView();
 
-    console.log(`✅ Extracted ${leads.length} leads`);
+    console.log(`Extracted ${leads.length} leads`);
     return leads;
   } catch (error) {
-    console.error('❌ Error extracting leads:', error);
+    console.error('Error extracting leads:', error);
     throw error;
   }
 }

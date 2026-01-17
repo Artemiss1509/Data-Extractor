@@ -38,7 +38,7 @@ async function waitForRows(timeout = 10000) {
 
 async function handleExtraction(options = {}) {
   try {
-    console.log('🚀 Starting extraction...');
+    console.log('Starting extraction...');
 
     indicator.showExtracting('board', 'unknown');
     indicator.updateProgress('Waiting for board to load...');
@@ -102,7 +102,7 @@ async function handleExtraction(options = {}) {
     return { success: true, entityType, count: items.length, boardInfo };
 
   } catch (error) {
-    console.error('❌ Extraction error:', error);
+    console.error('Extraction error:', error);
     indicator.showError(error.message);
 
     chrome.runtime.sendMessage({

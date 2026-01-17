@@ -73,7 +73,7 @@ function extractFromTableView() {
 
       contacts.push(contact);
     } catch (error) {
-      console.error('❌ Error extracting contact row:', error);
+      console.error('Error extracting contact row:', error);
     }
   });
 
@@ -92,7 +92,7 @@ export async function extractContacts() {
 
     const contacts = extractFromTableView();
 
-    console.log(`✅ Extracted ${contacts.length} contacts`);
+    console.log(`Extracted ${contacts.length} contacts`);
 
     const groupCounts = contacts.reduce((acc, c) => {
       acc[c.group] = (acc[c.group] || 0) + 1;
@@ -102,7 +102,7 @@ export async function extractContacts() {
 
     return contacts;
   } catch (error) {
-    console.error('❌ Error extracting contacts:', error);
+    console.error('Error extracting contacts:', error);
     throw error;
   }
 }

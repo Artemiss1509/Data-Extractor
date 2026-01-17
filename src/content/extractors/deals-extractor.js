@@ -3,23 +3,11 @@ import { VIEW_TYPES } from '../board-detector.js';
 
 function extractFromTableView() {
   const deals = [];
-  let currentGroup = 'Ungrouped';
 
-  const elements = document.querySelectorAll(
-    '.group-name[role="heading"], [data-testid^="item-"]'
-  );
+  const rows = document.querySelectorAll('[data-testid^="item-"]');
 
-  elements.forEach(el => {
+  rows.forEach(row => {
     try {
-      if (el.classList.contains('group-name')) {
-        currentGroup = el.textContent.trim();
-        return;
-      }
-
-      if (!el.dataset.testid?.startsWith('item-')) return;
-
-      const row = el;
-
       const name = row.querySelector(
         '.col-identifier-name .ds-text-component-content-text'
       )?.textContent?.trim();
@@ -30,12 +18,12 @@ function extractFromTableView() {
         id: generateId(name),
         name,
         value: null,
-        stage: currentGroup,
-        group: currentGroup,
+        stage: '',
         probability: null,
         closeDate: '',
         owner: '',
-        contact: ''
+        contact: '',
+        account: ''
       };
 
       const valueEl = row.querySelector(
@@ -45,11 +33,25 @@ function extractFromTableView() {
         deal.value = extractNumber(valueEl.textContent);
       }
 
+      const stageEl = row.querySelector(
+        '.col-identifier-deal_stage [data-testid="text"]'
+      );
+      if (stageEl) {
+        deal.stage = stageEl.textContent.trim();
+      }
+
       const probEl = row.querySelector(
         '.col-identifier-deal_close_probability .ds-text-component-content-text'
       );
       if (probEl) {
         deal.probability = extractNumber(probEl.textContent);
+      }
+
+      const dateEl = row.querySelector(
+        '.col-identifier-deal_expected_close_date .ds-text-component-content-text'
+      );
+      if (dateEl) {
+        deal.closeDate = dateEl.textContent.trim();
       }
 
       const contactEl = row.querySelector(
@@ -59,11 +61,18 @@ function extractFromTableView() {
         deal.contact = contactEl.textContent.trim();
       }
 
-      const dateEl = row.querySelector(
-        '.col-identifier-deal_expected_close_date .ds-text-component-content-text'
+      const accountEl = row.querySelector(
+        '.col-identifier-deal_account [data-testid="text"]'
       );
-      if (dateEl) {
-        deal.closeDate = dateEl.textContent.trim();
+      if (accountEl) {
+        deal.account = accountEl.textContent.trim();
+      }
+
+      const ownerImg = row.querySelector(
+        '.col-identifier-deal_owner img[title]'
+      );
+      if (ownerImg) {
+        deal.owner = ownerImg.getAttribute('title') || '';
       }
 
       deals.push(deal);
@@ -78,10 +87,10 @@ function extractFromTableView() {
 export async function extractDeals(viewType = VIEW_TYPES.TABLE) {
   console.log(`🔍 Extracting deals from ${viewType} view`);
 
-  await new Promise(r => setTimeout(r, 600));
+  await new Promise(r => setTimeout(r, 500));
 
   const deals = extractFromTableView();
 
-  console.log(`✅ Extracted ${deals.length} deals`);
+  console.log(`Extracted ${deals.length} deals`);
   return deals;
 }

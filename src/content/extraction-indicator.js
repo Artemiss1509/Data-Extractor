@@ -193,7 +193,7 @@ export class ExtractionIndicator {
     const details = this.shadowRoot.getElementById('details');
     
     indicator.className = 'indicator success';
-    icon.textContent = '✅';
+    icon.textContent = '';
     title.textContent = 'Extraction Complete!';
     message.textContent = `Successfully extracted ${count} ${boardType} records`;
     details.textContent = 'Data saved to local storage';
@@ -206,13 +206,11 @@ export class ExtractionIndicator {
     this.create();
     
     const indicator = this.shadowRoot.getElementById('indicator-box');
-    const icon = this.shadowRoot.getElementById('icon');
     const title = this.shadowRoot.getElementById('title');
     const message = this.shadowRoot.getElementById('message');
     const details = this.shadowRoot.getElementById('details');
     
     indicator.className = 'indicator error';
-    icon.textContent = '❌';
     title.textContent = 'Extraction Failed';
     message.textContent = error || 'An error occurred during extraction';
     details.style.display = 'none';

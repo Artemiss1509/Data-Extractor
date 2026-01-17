@@ -79,10 +79,10 @@ export async function extractActivities() {
 
     const activities = extractFromTableView();
 
-    console.log(`✅ Extracted ${activities.length} activities`);
+    console.log(`Extracted ${activities.length} activities`);
     return activities;
   } catch (error) {
-    console.error('❌ Error extracting activities:', error);
+    console.error('Error extracting activities:', error);
     throw error;
   }
 }

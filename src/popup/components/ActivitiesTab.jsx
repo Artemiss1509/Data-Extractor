@@ -46,7 +46,7 @@ export default function ActivitiesTab({ activities, lastSync }) {
       </div>
 
       <div className="flex items-center justify-between text-sm text-gray-600">
-        <span>✅ {filteredActivities.length} activit{filteredActivities.length !== 1 ? 'ies' : 'y'}</span>
+        <span>{filteredActivities.length} activit{filteredActivities.length !== 1 ? 'ies' : 'y'}</span>
         {lastSync && (
           <span className="text-xs">
             Last sync: {new Date(lastSync).toLocaleString()}
@@ -56,13 +56,13 @@ export default function ActivitiesTab({ activities, lastSync }) {
 
       {activities.length === 0 ? (
         <div className="text-center py-12 text-gray-500">
-          <div className="text-4xl mb-2">✅</div>
+          <div className="text-4xl mb-2"></div>
           <p>No activities extracted yet.</p>
           <p className="text-sm mt-1">Navigate to an Activities board and click "Extract Current Board"</p>
         </div>
       ) : filteredActivities.length === 0 ? (
         <div className="text-center py-12 text-gray-500">
-          <div className="text-4xl mb-2">🔍</div>
+          <div className="text-4xl mb-2"></div>
           <p>No activities match your search.</p>
         </div>
       ) : (
@@ -83,12 +83,12 @@ export default function ActivitiesTab({ activities, lastSync }) {
                   <div className="mt-2 space-y-1 text-sm">
                     {activity.date && (
                       <p>
-                        <span className="text-gray-500">📅 Date:</span> {activity.date}
+                        <span className="text-gray-500">Date:</span> {activity.date}
                       </p>
                     )}
                     {activity.linkedTo && (
                       <p>
-                        <span className="text-gray-500">🔗 Linked to:</span> {activity.linkedTo}
+                        <span className="text-gray-500">Linked to:</span> {activity.linkedTo}
                       </p>
                     )}
                   </div>

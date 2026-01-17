@@ -38,7 +38,7 @@ function App() {
     return (
       <div className="w-[600px] h-[500px] flex items-center justify-center">
         <div className="text-center text-red-600">
-          <div className="text-4xl mb-2">❌</div>
+          <div className="text-4xl mb-2"></div>
           <p>Error loading data: {error}</p>
         </div>
       </div>

@@ -1,12 +1,12 @@
 import { initializeStorage, updateEntityData } from '../storage/storage-manager.js';
 
 chrome.runtime.onInstalled.addListener(async () => {
-  console.log('📦 Monday.com CRM Extractor installed!');
+  console.log('Monday.com CRM Extractor installed!');
   await initializeStorage();
 });
 
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-  console.log('📨 Message received:', message.type);
+  console.log('Message received:', message.type);
   
   handleMessage(message, sender).then(sendResponse);
   
@@ -33,11 +33,11 @@ async function handleMessage(message, sender) {
         return { success: true, message: 'pong' };
       
       default:
-        console.warn('⚠️ Unknown message type:', message.type);
+        console.warn('Unknown message type:', message.type);
         return { success: false, error: 'Unknown message type' };
     }
   } catch (error) {
-    console.error('❌ Error handling message:', error);
+    console.error('Error handling message:', error);
     return { success: false, error: error.message };
   }
 }
@@ -65,7 +65,7 @@ async function handleExtractBoard(message) {
     
     return response;
   } catch (error) {
-    console.error('❌ Error in handleExtractBoard:', error);
+    console.error('Error in handleExtractBoard:', error);
     return { success: false, error: error.message };
   }
 }
@@ -74,7 +74,7 @@ async function handleExtractionComplete(message) {
   try {
     const { entityType, items, boardInfo } = message.data;
     
-    console.log(`✅ Extraction complete for ${entityType}:`, items.length, 'items');
+    console.log(`Extraction complete for ${entityType}:`, items.length, 'items');
     
     await updateEntityData(entityType, items, true);
     
@@ -89,13 +89,13 @@ async function handleExtractionComplete(message) {
     
     return { success: true, count: items.length };
   } catch (error) {
-    console.error('❌ Error handling extraction complete:', error);
+    console.error('Error handling extraction complete:', error);
     return { success: false, error: error.message };
   }
 }
 
 async function handleExtractionError(message) {
-  console.error('❌ Extraction error:', message.error);
+  console.error('Extraction error:', message.error);
   
   chrome.runtime.sendMessage({
     type: 'EXTRACTION_ERROR',
