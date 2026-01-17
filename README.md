@@ -50,3 +50,26 @@ A Chrome Extension that extracts CRM data from Monday.com boards (Contacts, Deal
 5. **Verify installation**
    - You should see the "Monday.com CRM Extractor" extension
    - The extension icon will appear in your toolbar
+
+## 📦 Storage Schema
+
+- {
+    "contacts": [],
+    "deals": [],
+    "leads": [],
+    "activities": [],
+    "lastSync": {
+      "contacts": null,
+      "deals": null,
+      "leads": null,
+      "activities": null
+    }
+  }
+
+
+## DOM selection strategy
+
+- Monday.com’s UI presents a technical challenge due to its reliance on random (or so it seems) class names and React-based virtualized rendering. To address this, the DOM detection strategy is layered and column-driven.
+- The extractor targets Monday’s internal col-identifier-* attributes and data-testid markers instead of positional DOM traversal. This ensures reliable data extraction across React-virtualized boards, different view modes, and UI updates, while not depending on class names.
+
+
