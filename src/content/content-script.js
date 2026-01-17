@@ -5,7 +5,7 @@ import { extractDeals } from './extractors/deals-extractor.js';
 import { extractLeads } from './extractors/leads-extractor.js';
 import { extractActivities } from './extractors/activities-extractor.js';
 
-console.log('🐶 Monday.com CRM Extractor - Content script loaded!');
+console.log('Monday.com CRM Extractor - Content script loaded!');
 
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (message.type === 'START_EXTRACTION') {
@@ -47,7 +47,7 @@ async function handleExtraction(options = {}) {
     await waitForRows();
 
     const boardInfo = getBoardInfo();
-    console.log('📊 Board info:', boardInfo);
+    console.log('Board info:', boardInfo);
 
     indicator.showExtracting(boardInfo.type, boardInfo.viewType);
 
